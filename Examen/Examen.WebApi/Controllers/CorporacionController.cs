@@ -5,13 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace Examen.WebApi.Controllers
 {
     [Route("corporacion")]
-    public class CorporacionController : Controller
+    public class CorporacionController : BaseController
     {
-        private readonly IUnidadTrabajo _unidad;
-
-        public CorporacionController(IUnidadTrabajo unidad)
+        public CorporacionController(IUnidadTrabajo unidad) : base(unidad)
         {
-            _unidad = unidad;
         }
 
         [HttpGet]
@@ -53,6 +50,13 @@ namespace Examen.WebApi.Controllers
             int filaFinal = numeroPagina * cantRegistros;
 
             return Ok(_unidad.Corporaciones.ObtenerCorporacionesPaginadas(filaInicial, filaFinal));
+        }
+
+        [HttpGet]
+        [Route("contar")]
+        public IActionResult ContarRegistros()
+        {
+            return Ok(_unidad.Corporaciones.ContarRegistros());
         }
 
     }

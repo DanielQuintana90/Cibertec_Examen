@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Examen.MockData\Examen.MockData.csproj" />
     <ProjectReference Include="..\Examen.PruebaDatos\Examen.PruebaDatos.csproj" />
     <ProjectReference Include="..\Examen.UnidadDeTrabajo\Examen.UnidadDeTrabajo.csproj" />
     <ProjectReference Include="..\Examen.WebApi\Examen.WebApi.csproj" />

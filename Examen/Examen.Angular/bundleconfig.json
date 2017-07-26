@@ -48,6 +48,7 @@
     "inputFiles": [
       "wwwroot/app/shared/**/*.js",
       "wwwroot/app/components/**/*.js",
+      "wwwroot/app/public/**/*.js",
       "wwwroot/app/private/**/*.js"
     ],
     "minify": {

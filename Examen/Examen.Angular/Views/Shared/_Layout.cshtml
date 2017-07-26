@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Examen.Angular</title>
+    <title>@ViewData["Title"] - Examen Cibertec</title>
 
     <environment names="Development, Production">
         <link href="~/libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -16,13 +16,14 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Examen.Angular</a>
+                <a class="navbar-brand" href="#">Examen Angular</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a ng-click="vm.inicio()" href="#" ui-sref-active="active">Inicio</a></li>
-                    <li><a ng-click="vm.miembro()" href="#" ui-sref-active="active">Participantes</a></li>
-                    <li><a ng-click="vm.corporacion()" href="#" ui-sref-active="active">Corporación</a></li>
+                    <li><a ng-if="!vm.validate()" ng-click="vm.iniciarSesion()" href="#" ui-sref-active="active">Inicio</a></li>
+                    <li><a ng-if="vm.validate()" ng-click="vm.logout()" href="#" ui-sref-active="active">Salir</a></li>
+                    <li><a ng-if="vm.validate()" ng-click="vm.miembro()" href="#" ui-sref-active="active">Participantes</a></li>
+                    <li><a ng-if="vm.validate()" ng-click="vm.corporacion()" href="#" ui-sref-active="active">Corporación</a></li>
                 </ul>
             </div>
         </div>
@@ -31,7 +32,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - Examen.Angular</p>
+            <p>&copy; 2017 - Examen Cibertec</p>
         </footer>
     </div>
 

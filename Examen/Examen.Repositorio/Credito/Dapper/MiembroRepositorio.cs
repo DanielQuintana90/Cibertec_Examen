@@ -3,11 +3,11 @@ using Examen.Modelos;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace Examen.Repositorios.Dapper.Credito
+namespace Examen.Repositorios.Credito.Dapper
 {
     public class MiembroRepositorio : Repositorio<Member>, IMiembroRepositorio
     {
-        public MiembroRepositorio(string connectionString) : base(connectionString)
+        public MiembroRepositorio(string cadenaDeConexion) : base(cadenaDeConexion)
         {
 
         }
@@ -23,6 +23,14 @@ namespace Examen.Repositorios.Dapper.Credito
                 return conexion.Query<Member>("dbo.ListaPaginadaDeMiembros",
                     parametros,
                     commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
+
+        public int ContarRegistros()
+        {
+            using (var conexion = new SqlConnection(_cadenaDeConexion))
+            {
+                return conexion.ExecuteScalar<int>("select Count(member_no) from dbo.Member");
             }
         }
 

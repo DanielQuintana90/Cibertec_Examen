@@ -7,16 +7,16 @@
 
     function routeConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state("inicio", {
-                url: '/inicio',
-                templateUrl: 'app/home.html'
+            .state("login", {
+                url: '/login',
+                templateUrl: 'app/public/login/index.html'
             })
             .state("miembro", {
                 url: '/miembro',
-                templateUrl: 'app/public/miembro/index.html'
+                templateUrl: 'app/private/miembro/index.html'
             })
             .state("corporacion", {
-                url: "/corporacion",
+                url: '/corporacion',
                 templateUrl: 'app/private/corporacion/index.html'
             })
             .state("otherwise", {

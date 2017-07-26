@@ -1,4 +1,5 @@
 ﻿using Examen.UnidadDeTrabajo;
+using Examen.WebApi.Provider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +25,11 @@ namespace Examen.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(cors => cors.AddPolicy("AllAccess", builder =>
+            {
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
+
             services.AddSingleton<IUnidadTrabajo>(unidadTrabajo => new UnidadTrabajo(Configuration.GetConnectionString("Creditos")));
 
             // Add framework services.
@@ -33,6 +39,9 @@ namespace Examen.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseCors("AllAccess");
+            app.UseSimpleToken();
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 

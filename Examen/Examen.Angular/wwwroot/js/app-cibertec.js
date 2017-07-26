@@ -1,4 +1,53 @@
 (function () {
+    angular
+        .module('app')
+        .factory('authenticationService', authenticationService);
+
+    authenticationService.$inject = ['$http', '$state', 'localStorageService', 'configService', '$q'];
+
+    function authenticationService($http, $state, localStorageService, configService, $q) {
+        var service = {};
+
+        service.login = login;
+        service.logout = logout;
+
+        return service;
+
+        function login(user) {
+
+            var defer = $q.defer();
+            var url = configService.getApiUrl() + '/Token';
+            var data = "email=" + user.userName + "&contrasena=" + user.password;
+
+            $http.post(url, data, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }).then(function (result) {
+                $http.defaults.headers.common.Authorization = 'Bearer ' + result.data.access_token;
+                localStorageService.set('userToken', {
+                    token: result.data.access_token,
+                    userName: user.userName
+                });
+                configService.setLogin(true);
+                defer.resolve(true);
+                }, function error(response) {
+                    defer.reject(false);
+                });
+
+            return defer.promise;
+
+        }
+
+        function logout() {
+            $http.defaults.headers.common.Authorization = '';
+            localStorageService.remove('userToken');
+            configService.setLogin(false);
+        }
+    }
+
+})();
+(function () {
 
     angular
         .module('app')
@@ -100,6 +149,38 @@
 (function () {
     'use strict';
 
+    angular.module('app').controller('loginController', loginController);
+
+    loginController.$inject = ['$http', 'authenticationService', 'configService', '$state'];
+
+    function loginController($http, authenticationService, configService, $state) {
+        var vm = this;
+        vm.user = {};
+        vm.title = 'Iniciar sesión';
+        vm.login = login;
+
+        init();
+
+        function init() {
+            if (configService.getLogin()) $state.go("corporacion");
+            authenticationService.logout();
+        }
+
+        function login() {
+            authenticationService.login(vm.user).then(function (result) {
+                vm.showError = false;
+                $state.go("corporacion");
+            }, function (error) {
+                vm.showError = true;
+            });
+        }
+
+    }
+
+})();
+(function () {
+    'use strict';
+
     angular.module('app').controller('corporacionController', corporacionController);
 
     corporacionController.$inject = ['dataService', 'configService', '$state'];
@@ -117,7 +198,7 @@
         vm.showCreate = false;
 
         vm.totalRecords = 0;
-        vm.itemsPerPage = 25;
+        vm.itemsPerPage = 10;
         vm.currentPage = 1;
         vm.maxSize = 10;
 
@@ -131,7 +212,8 @@
         init();
 
         function init() {
-            list();
+            if (!configService.getLogin()) return $state.go('login');
+            configurePagination();
         }
         
         function list() {
@@ -168,8 +250,7 @@
                     console.log(error);
                 });
         }
-
-
+        
         function createCorporacion() {
             if (!vm.corporacion) return;
 
@@ -239,25 +320,44 @@
             list();
         }
 
+        function configurePagination() {
+            var widthScreen = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+            if (widthScreen < 420) vm.maxSize = 5;
+            getTotalRecords();
+        }
+
+        function getTotalRecords() {
+            dataService.getData(apiUrl + '/corporacion/contar')
+                .then(function (result) {
+                    vm.totalRecords = result.data;
+                    list();
+                }, function (error) {
+                    vm.totalRecords = 0;
+                    console.log(error);
+                });
+        }
     }
 
 })();
 (function () {
     'use strict';
 
-    angular.module('app').directive('productCard', productCard);
+    angular.module('app').directive('corporacionCard', corporacionCard);
 
-    function productCard() {
+    function corporacionCard() {
         return {
             restrict: 'E',
             transclude: true,
             scope: {
-                id: '@',
-                productName: '@',
-                supplierId: '@',
-                unitPrice: '@',
-                package: '@',
-                isDiscontinued: '='
+                corp_No: '@',
+                corp_Name: '@',
+                street: '@',
+                city: '@',
+                state_Prov: '@',
+                mail_Code: '@',
+                phone_No: '@',
+                expr_Dt: '@',
+                corp_Code: '@'
             },
             templateUrl: 'app/private/corporacion/directives/corporacion-card/corporacion-card.html',
             controller: directiveController
@@ -272,13 +372,13 @@
 (function () {
     'use strict';
 
-    angular.module('app').directive('productForm', productForm);
+    angular.module('app').directive('corporacionForm', corporacionForm);
 
-    function productForm() {
+    function corporacionForm() {
         return {
             restrict: 'E',
             scope: {
-                product: '='
+                corporacion: '='
             },
             templateUrl: 'app/private/corporacion/directives/corporacion-form/corporacion-form.html'
         };

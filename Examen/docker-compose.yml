@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  examen.webapi:
+    image: examen.webapi
+    build:
+      context: ./Examen.WebApi
+      dockerfile: Dockerfile

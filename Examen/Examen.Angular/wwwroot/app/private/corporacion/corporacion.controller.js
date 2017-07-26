@@ -18,7 +18,7 @@
         vm.showCreate = false;
 
         vm.totalRecords = 0;
-        vm.itemsPerPage = 25;
+        vm.itemsPerPage = 10;
         vm.currentPage = 1;
         vm.maxSize = 10;
 
@@ -32,7 +32,8 @@
         init();
 
         function init() {
-            list();
+            if (!configService.getLogin()) return $state.go('login');
+            configurePagination();
         }
         
         function list() {
@@ -69,8 +70,7 @@
                     console.log(error);
                 });
         }
-
-
+        
         function createCorporacion() {
             if (!vm.corporacion) return;
 
@@ -140,6 +140,22 @@
             list();
         }
 
+        function configurePagination() {
+            var widthScreen = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+            if (widthScreen < 420) vm.maxSize = 5;
+            getTotalRecords();
+        }
+
+        function getTotalRecords() {
+            dataService.getData(apiUrl + '/corporacion/contar')
+                .then(function (result) {
+                    vm.totalRecords = result.data;
+                    list();
+                }, function (error) {
+                    vm.totalRecords = 0;
+                    console.log(error);
+                });
+        }
     }
 
 })();

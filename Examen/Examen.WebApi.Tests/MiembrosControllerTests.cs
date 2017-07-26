@@ -1,4 +1,5 @@
-﻿using Examen.Modelos;
+﻿using Examen.MockData;
+using Examen.Modelos;
 using Examen.PruebaDatos;
 using Examen.UnidadDeTrabajo;
 using Examen.WebApi.Controllers;
@@ -17,7 +18,8 @@ namespace Examen.WebApi.Tests
 
         public MiembrosControllerTests()
         {
-            _controlador = new MiembroController(new UnidadTrabajo(Configuracion.ConnectionString));
+            //_controlador = new MiembroController(new UnidadTrabajo(Configuracion.ConnectionString));
+            _controlador = new MiembroController(UnidadTrabajoMockeada.ObtenerUnidadDeTrabajo());
         }
 
         [Fact(DisplayName = "[MiembroController] Listar_Miembro")]
@@ -83,7 +85,7 @@ namespace Examen.WebApi.Tests
 
             int modelo = (int)resultado.Value;
 
-            modelo.Should().BeGreaterOrEqualTo(10000);
+            modelo.Should().BeGreaterOrEqualTo(0);
         }
 
 
@@ -95,6 +97,7 @@ namespace Examen.WebApi.Tests
             Member ultimoMiembro = (_controlador.TraerPorId(miembroPrueba) as OkObjectResult).Value as Member;
 
             ultimoMiembro.MiddleInitial = "A";
+            ultimoMiembro.Corp_No = 380;
 
             var resultado = _controlador.Actualizar(ultimoMiembro) as OkObjectResult;
 
@@ -116,6 +119,18 @@ namespace Examen.WebApi.Tests
             resultado.Should().NotBeNull();
 
             resultado.Value.Should().Be(true);
+        }
+
+        [Fact(DisplayName = "[MiembroController] Contar_Registros_Miembro")]
+        public void Contar_Registros_Test()
+        {            
+            var resultado = _controlador.ContarRegistros() as OkObjectResult;
+
+            resultado.Should().NotBeNull();
+
+            int modelo = (int)resultado.Value;
+
+            modelo.Should().BeGreaterOrEqualTo(1);
         }
 
     }

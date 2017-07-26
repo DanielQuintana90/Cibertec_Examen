@@ -5,13 +5,10 @@ using Examen.UnidadDeTrabajo;
 namespace Examen.WebApi.Controllers
 {
     [Route("miembro")]
-    public class MiembroController : Controller
+    public class MiembroController : BaseController
     {
-        private readonly IUnidadTrabajo _unidad;
-
-        public MiembroController(IUnidadTrabajo unidad)
+        public MiembroController(IUnidadTrabajo unidad) : base(unidad)
         {
-            _unidad = unidad;
         }
 
         [HttpGet]
@@ -54,6 +51,13 @@ namespace Examen.WebApi.Controllers
 
             return Ok(_unidad.Miembros.ObtenerMiembrosPaginados(filaInicial, filaFinal));
         }
-        
+
+        [HttpGet]
+        [Route("contar")]
+        public IActionResult ContarRegistros()
+        {
+            return Ok(_unidad.Miembros.ContarRegistros());
+        }
+
     }
 }

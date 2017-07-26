@@ -1,13 +1,13 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('app').directive('productForm', productForm);
+    angular.module('app').directive('corporacionForm', corporacionForm);
 
-    function productForm() {
+    function corporacionForm() {
         return {
             restrict: 'E',
             scope: {
-                product: '='
+                corporacion: '='
             },
             templateUrl: 'app/private/corporacion/directives/corporacion-form/corporacion-form.html'
         };

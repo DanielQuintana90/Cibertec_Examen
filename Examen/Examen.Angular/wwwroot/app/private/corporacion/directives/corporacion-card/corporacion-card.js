@@ -1,19 +1,22 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('app').directive('productCard', productCard);
+    angular.module('app').directive('corporacionCard', corporacionCard);
 
-    function productCard() {
+    function corporacionCard() {
         return {
             restrict: 'E',
             transclude: true,
             scope: {
-                id: '@',
-                productName: '@',
-                supplierId: '@',
-                unitPrice: '@',
-                package: '@',
-                isDiscontinued: '='
+                corp_No: '@',
+                corp_Name: '@',
+                street: '@',
+                city: '@',
+                state_Prov: '@',
+                mail_Code: '@',
+                phone_No: '@',
+                expr_Dt: '@',
+                corp_Code: '@'
             },
             templateUrl: 'app/private/corporacion/directives/corporacion-card/corporacion-card.html',
             controller: directiveController

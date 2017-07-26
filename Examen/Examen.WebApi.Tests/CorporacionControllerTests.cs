@@ -1,3 +1,4 @@
+using Examen.MockData;
 using Examen.Modelos;
 using Examen.PruebaDatos;
 using Examen.UnidadDeTrabajo;
@@ -17,7 +18,8 @@ namespace Examen.WebApi.Tests
 
         public CorporacionControllerTests()
         {
-            _controlador = new CorporacionController(new UnidadTrabajo(Configuracion.ConnectionString));
+            //_controlador = new CorporacionController(new UnidadTrabajo(Configuracion.ConnectionString));
+            _controlador = new CorporacionController(UnidadTrabajoMockeada.ObtenerUnidadDeTrabajo());
         }
 
         [Fact(DisplayName = "[CorporacionController] Listar_Corporacion")]
@@ -77,7 +79,7 @@ namespace Examen.WebApi.Tests
 
             int modelo = (int)resultado.Value;
 
-            modelo.Should().BeGreaterThan(500);
+            modelo.Should().BeGreaterThan(0);
         }
 
 
@@ -110,6 +112,18 @@ namespace Examen.WebApi.Tests
             resultado.Should().NotBeNull();
 
             resultado.Value.Should().Be(true);
+        }
+
+        [Fact(DisplayName = "[CorporacionController] Contar_Registros_Corporacion")]
+        public void Contar_Registros_Test()
+        {
+            var resultado = _controlador.ContarRegistros() as OkObjectResult;
+
+            resultado.Should().NotBeNull();
+
+            int modelo = (int)resultado.Value;
+
+            modelo.Should().BeGreaterOrEqualTo(1);
         }
 
     }

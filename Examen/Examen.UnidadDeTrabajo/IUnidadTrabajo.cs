@@ -1,4 +1,4 @@
-﻿using Examen.Repositorios.Dapper;
+﻿using Examen.Repositorios.Credito;
 
 namespace Examen.UnidadDeTrabajo
 {
@@ -6,5 +6,6 @@ namespace Examen.UnidadDeTrabajo
     {
         ICorporacionRepositorio Corporaciones { get; }
         IMiembroRepositorio Miembros { get; }
+        IUsuarioRepositorio Usuarios { get; }
     }
 }

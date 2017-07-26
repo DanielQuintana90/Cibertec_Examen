@@ -10,4 +10,8 @@
     <PackageReference Include="dapper.contrib" Version="1.50.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ExamenModelo\Examen.Modelos.csproj" />
+  </ItemGroup>
+
 </Project>

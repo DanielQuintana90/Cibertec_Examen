@@ -5,7 +5,7 @@ namespace Examen.Modelos
 {
     public class Corporation
     {
-        [ExplicitKey]
+        [Key]
         public int Corp_No { get; set; }
         public string Corp_Name { get; set; }
         public string Street { get; set; }

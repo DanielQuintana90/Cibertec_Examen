@@ -5,7 +5,7 @@ namespace Examen.Modelos
 {
     public class Member
     {
-        [ExplicitKey]
+        [Key]
         public int Member_No { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }

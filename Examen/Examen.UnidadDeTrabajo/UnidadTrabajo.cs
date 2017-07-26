@@ -1,21 +1,18 @@
-﻿using Examen.Modelos;
-using Examen.Repositorios;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Examen.Repositorios.Dapper;
+using Examen.Repositorios.Dapper.Credito;
 
 namespace Examen.UnidadDeTrabajo
 {
     public class UnidadTrabajo : IUnidadTrabajo
     {
-
         public UnidadTrabajo(string cadenaConexion)
         {
-            Corporations = new Repositorio<Corporation>(cadenaConexion);
-            Members = new Repositorio<Member>(cadenaConexion);
+            Corporaciones = new CorporacionRepositorio(cadenaConexion);
+            Miembros = new MiembroRepositorio(cadenaConexion);
         }
-                
-        public IRepositorio<Corporation> Corporations { get; private set; }
-        public IRepositorio<Member> Members { get; private set; }
+
+        public ICorporacionRepositorio Corporaciones { get; private set; }
+        public IMiembroRepositorio Miembros { get; private set; }
+
     }
 }

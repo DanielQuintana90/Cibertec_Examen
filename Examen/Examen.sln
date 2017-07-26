@@ -1,19 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examen.Modelos", "ExamenModelo\Examen.Modelos.csproj", "{8615BFF0-07C2-49C4-9E0B-E123C4F65C59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examen.Modelos", "ExamenModelo\Examen.Modelos.csproj", "{8615BFF0-07C2-49C4-9E0B-E123C4F65C59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examen.Repositorios", "Examen.Repositorio\Examen.Repositorios.csproj", "{5FB62943-23A2-434E-BA05-65DBB0E25B5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examen.Repositorios", "Examen.Repositorio\Examen.Repositorios.csproj", "{5FB62943-23A2-434E-BA05-65DBB0E25B5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examen.UnidadDeTrabajo", "Examen.UnidadDeTrabajo\Examen.UnidadDeTrabajo.csproj", "{8F4DE3CF-5786-4B3D-BEA3-3FA3DF862723}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examen.UnidadDeTrabajo", "Examen.UnidadDeTrabajo\Examen.UnidadDeTrabajo.csproj", "{8F4DE3CF-5786-4B3D-BEA3-3FA3DF862723}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Datos", "Datos", "{5D405BDE-4FC8-43EF-BBD3-7872F5876962}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{7B6C7FC7-64A2-45C3-AC4C-E7A31F4323DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examen.PruebaDatos", "Examen.PruebaDatos\Examen.PruebaDatos.csproj", "{005855CA-A996-408B-84F5-79BD831606C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examen.PruebaDatos", "Examen.PruebaDatos\Examen.PruebaDatos.csproj", "{005855CA-A996-408B-84F5-79BD831606C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examen.WebApi", "Examen.WebApi\Examen.WebApi.csproj", "{98B3B91D-8EB6-47FD-B4B7-2362BAF43C4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examen.WebApi.Tests", "Examen.WebApi.Tests\Examen.WebApi.Tests.csproj", "{580E2218-1F9C-422B-BA25-4350BD37096A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examen.Angular", "Examen.Angular\Examen.Angular.csproj", "{F65B0F11-5986-4214-A945-B11B5EE35A6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +43,18 @@ Global
 		{005855CA-A996-408B-84F5-79BD831606C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{005855CA-A996-408B-84F5-79BD831606C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{005855CA-A996-408B-84F5-79BD831606C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98B3B91D-8EB6-47FD-B4B7-2362BAF43C4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98B3B91D-8EB6-47FD-B4B7-2362BAF43C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98B3B91D-8EB6-47FD-B4B7-2362BAF43C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98B3B91D-8EB6-47FD-B4B7-2362BAF43C4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{580E2218-1F9C-422B-BA25-4350BD37096A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{580E2218-1F9C-422B-BA25-4350BD37096A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{580E2218-1F9C-422B-BA25-4350BD37096A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{580E2218-1F9C-422B-BA25-4350BD37096A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F65B0F11-5986-4214-A945-B11B5EE35A6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F65B0F11-5986-4214-A945-B11B5EE35A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F65B0F11-5986-4214-A945-B11B5EE35A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F65B0F11-5986-4214-A945-B11B5EE35A6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +64,6 @@ Global
 		{5FB62943-23A2-434E-BA05-65DBB0E25B5A} = {5D405BDE-4FC8-43EF-BBD3-7872F5876962}
 		{8F4DE3CF-5786-4B3D-BEA3-3FA3DF862723} = {5D405BDE-4FC8-43EF-BBD3-7872F5876962}
 		{005855CA-A996-408B-84F5-79BD831606C3} = {7B6C7FC7-64A2-45C3-AC4C-E7A31F4323DC}
+		{580E2218-1F9C-422B-BA25-4350BD37096A} = {7B6C7FC7-64A2-45C3-AC4C-E7A31F4323DC}
 	EndGlobalSection
 EndGlobal

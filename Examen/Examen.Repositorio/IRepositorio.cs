@@ -8,6 +8,6 @@ namespace Examen.Repositorios
         int Insertar(T entidad);
         bool Actualizar(T entidad);
         IEnumerable<T> ListarTodo();
-        T TraerPorId(int id);
+        T TraerPorId(int id);        
     }
 }

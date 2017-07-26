@@ -1,11 +1,10 @@
-﻿using Examen.Modelos;
-using Examen.Repositorios;
+﻿using Examen.Repositorios.Dapper;
 
 namespace Examen.UnidadDeTrabajo
 {
     public interface IUnidadTrabajo
     {
-        IRepositorio<Corporation> Corporations { get; }
-        IRepositorio<Member> Members { get; }
+        ICorporacionRepositorio Corporaciones { get; }
+        IMiembroRepositorio Miembros { get; }
     }
 }
